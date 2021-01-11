@@ -1,0 +1,13 @@
+*.pyc
+*.o
+*.exe
+*.aux
+*~
+.DS_Store
+.#*
+#*#
+doc/html
+doc/latex
+tags
+__pycache__
+BUILDS*
