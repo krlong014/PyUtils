@@ -11,3 +11,4 @@ doc/latex
 tags
 __pycache__
 BUILDS*
+*.egg-info
