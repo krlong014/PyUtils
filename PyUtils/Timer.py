@@ -1,6 +1,6 @@
 import time
-from Tab import *
-from Debug import *
+from PyUtils.Tab import *
+from PyUtils.Debug import *
 
 class TimeMonitor:
   """A docstring"""

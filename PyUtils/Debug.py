@@ -1,4 +1,4 @@
-from Tab import Tab
+from PyUtils.Tab import Tab
 import sys
 
 class Debug:
@@ -9,7 +9,7 @@ class Debug:
   In all member functions, the parameters are:
 
   * verb -- the verbosity level, which determines whether or not a given message gets output.
-  * \*args -- message components to be output (can be one or more arguments)
+  * *args -- message components to be output (can be one or more arguments)
 
   For example, the code fragment below will print the messages before and
   after the loop, but not the message within the loop. If verb is set to 2,
