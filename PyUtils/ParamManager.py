@@ -43,7 +43,7 @@ def getDefaultParams(spec):
 
 def validateParam(paramSpec, userParams, key):
 
-  # Throw a spoke if the key isn't found in the specifications list
+  # Give up if the key isn't found in the specifications list
   try:
     spec = paramSpec[key]
   except KeyError:

@@ -15,17 +15,19 @@ class Tab:
   depth = 0
 
   # Increase the tab depth upon constructing a new object
-  def __init__(self):
+  def __init__(self, n:int=1):
     '''When a Tab constructor is called, the tab depth is increased'''
+    self.n = n
+    Tab.depth += n*Tab.tabsize
     self.depth = Tab.depth
-    Tab.depth += Tab.tabsize
     self._in_scope = True
+#    print('increasing tab depth to ', Tab.depth)
 
 
   # The string representation is the specified number of spaces
   def __str__(self):
     '''Write a Tab to string.'''
-    return ' ' * (Tab.tabsize*self.depth)
+    return ' ' * self.depth
 
   # Upon deletion of an object, decrement the tab depth
   def __del__(self):
@@ -37,7 +39,8 @@ class Tab:
   # is for use in loops and conditionals where Python does not close
   # scope at the end of the block
   def close(self):
-    Tab.depth -= Tab.tabsize
+    Tab.depth -= self.n*Tab.tabsize
+#    print('decreasing tab depth to ', Tab.depth) 
     self._in_scope = False
 
 
