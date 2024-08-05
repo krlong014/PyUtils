@@ -8,7 +8,7 @@ setuptools.setup(
     description="Simple development utilities",
     long_description="Profilers, Loggers, Tabbers, etc",
     long_description_content_type="text/markdown",
-    url="https://github.com/krlong014/PyPDE",
+    url="https://github.com/krlong014/PyUtils",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
