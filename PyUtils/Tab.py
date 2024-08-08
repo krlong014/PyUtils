@@ -1,5 +1,7 @@
 '''! @ brief Tab management.'''
 
+import traceback as tb
+
 class Tab:
   '''! Tab is an object for managing tabbed output.
 
@@ -14,13 +16,26 @@ class Tab:
   tabsize = 2
   depth = 0
 
+  @classmethod
+  def tablist(cls, n, live=True):
+    rtn = []
+    for i in range(n):
+      if live:
+        rtn.append(Tab())
+      else:
+        rtn.append('')
+
+    return rtn
+  
+
   # Increase the tab depth upon constructing a new object
   def __init__(self, n:int=1):
     '''When a Tab constructor is called, the tab depth is increased'''
+    # print('Tab ctor: depth=', Tab.depth)
+    # tb.print_stack(limit=4)
     self.n = n
-    Tab.depth += n*Tab.tabsize
     self.depth = Tab.depth
-    self._in_scope = True
+    self.open()
 #    print('increasing tab depth to ', Tab.depth)
 
 
@@ -28,6 +43,9 @@ class Tab:
   def __str__(self):
     '''Write a Tab to string.'''
     return ' ' * self.depth
+  
+  # Increment the tab depth
+
 
   # Upon deletion of an object, decrement the tab depth
   def __del__(self):
@@ -35,10 +53,17 @@ class Tab:
     if self._in_scope:
       self.close()
 
+  # Increment the tab depth
+  def open(self):
+    Tab.depth += self.n*Tab.tabsize
+    self._in_scope = True
+
   # Use this to force an artificial closure of scope of the tab, This
   # is for use in loops and conditionals where Python does not close
   # scope at the end of the block
   def close(self):
+    # print('Tab close: depth=', Tab.depth)
+    # tb.print_stack(limit=4)
     Tab.depth -= self.n*Tab.tabsize
 #    print('decreasing tab depth to ', Tab.depth) 
     self._in_scope = False
@@ -48,6 +73,10 @@ class Tab:
 
 if __name__=='__main__':
   '''Example'''
+
+  T = Tab.tablist(4)
+  for t in T:
+    print(t,'x')
 
   def f1():
     tab = Tab()
